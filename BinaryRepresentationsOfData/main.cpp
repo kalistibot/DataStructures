@@ -1,8 +1,9 @@
 //
 //  main.cpp
 //  BinaryRepresentationsOfData
-//
+//  Project 1
 //  Created by Aaron on 1/13/16.
+//  There are no Data Structures contained in this code right now.
 //  Copyright © 2016 Aaron. All rights reserved.
 //
 
