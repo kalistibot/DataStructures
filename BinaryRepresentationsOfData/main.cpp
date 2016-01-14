@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
+using namespace std;
 
 int main(int argc, const char * argv[]) {
-    
-    
+
+
+    cout<< "The size of a char is " << sizeof(char);
+    cout<< "\nThe size of a short is "<< sizeof(short);
+    cout<< "\nThe size of a float is "<<sizeof(float)<<endl;
     return 0;
 }
