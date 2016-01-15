@@ -9,60 +9,65 @@
 
 #include <iostream>
 #include "PrintBinary.hpp"
+#include <typeinfo>
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-
-/*
-    cout<< "The size of a char is " << sizeof(char);
-    cout<< "\nThe size of a short is "<< sizeof(short);
-    cout<< "\nThe size of a float is "<<sizeof(float)<<endl;
-
-    cout<< "The value of C :";
-    printChar('C');
-    cout<< "\nThe value of 1234 :";
-    printShort(1234);
-    cout<<"\nThe value of 3.1457 :";
-    printFloat(3.1457);
-    cout<<endl;
-  */
-    
-    int choice;
-    cout<<" Menu \n \
+    cin.clear();
+    cout<<"Menu \n \
     1 - Print the binary representation of a character \n \
     2 - Print the binary representation of a short integer \n \
     3 - Print the binary representation of a float \n \
     4 - Exit program "<<endl;
-    
+    int choice;
     cin>>choice;
-    while (choice<1 ||choice>4) {
-        cout<<"Please enter a choice between 1 and 4!"<<endl;
-        cin>>choice;
-    }
+    cin.clear();
 
-    
-    switch (choice) {
-        case 1:
-            cout<< "Enter a character: "<<endl;
-            char ch;
-            cin >>ch;
-            printChar(ch);
-            break;
-        case 2:
-            cout << "Enter a short integer: "<<endl;
-            short sh;
-            cin >>sh;
-            printShort(sh);
-            break;
-         case 3:
-            cout << "Enter a float: "<<endl;
-            float fl;
-            cin >>fl;
-            printFloat(fl);
-            break;
-        default:
-            break;
+    while (choice!=4) {
+
+        while ((choice<1 ||  choice>4)) {
+            cout<<"Try again.  Please enter a choice between 1 and 4!"<<endl;
+            cin>>choice;
+            cin.clear();
+        }
+        switch (choice) {
+            case 1:
+                cout<< "Enter a character: "<<endl;
+                char ch;
+                cin >>ch;
+                cin.clear();
+                while  (ch<32||ch>127) {
+                    cout << "I don't recognize that character.  Please enter an ASCII character. "<<endl;
+                    cin>>ch;
+                    cin.clear();
+                }
+                
+                printChar(ch);
+                break;
+            case 2:
+                cout << "Enter a short integer: "<<endl;
+                short sh;
+                cin >>sh;
+                printShort(sh);
+                break;
+            case 3:
+                cout << "Enter a float: "<<endl;
+                float fl;
+                cin >>fl;
+                printFloat(fl);
+                break;
+            case 4:
+                cout <<"Goodbye. \n";
+                return 0;
+            default:
+                break;
+        }
+        cout<<"\nPlease enter a choice between 1 and 4. "<<endl;
+        cin>>choice;
+        cin.clear();
     }
+    if (choice==4)
+        cout<<"Goodbye for now."<<endl;
 
     cout<<"Press any key to end"<<endl;
     cin.get();
