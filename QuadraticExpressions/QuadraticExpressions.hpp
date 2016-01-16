@@ -32,5 +32,8 @@ double getSmallRoot() const;
 double getLargeRoot() const;
 
 friend Quadratic operator+( const Quadratic& q1, const Quadratic& q2 );
+
+
+friend Quadratic operator*( double r, const Quadratic& q );
 };
 #endif /* QuadraticExpressions_hpp */

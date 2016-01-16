@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <math.h>
 using namespace std;
 Quadratic::Quadratic(){
     
@@ -93,10 +94,71 @@ Quadratic operator*( double r, const Quadratic& q ){
 }
 
 
+int Quadratic::getNumRoots() const{
+    int roots;
+    
+    //If a, b and c are all zero, then every value of x is a real root.
+    // for this case, 3 equals infinite.
+    if ( this->a == 0 && this->b == 0 && this->c == 0 ) {
+        roots = 3;
+        return roots;
+    }
+    
+    // If a and b are zero and c is non-zero, then there are no real roots.
+    if ( this->a ==0 && this->b == 0 && this->c !=0 ) {
+        roots = 0;
+        return roots;
+    }
+    
+     //If a is zero and b is non-zero, then the only real root is x = -c/b.
+    if ( this->a ==0 && this->b != 0 ) {
+        roots = 1;
+        return roots;
+    }
 
-/*
-double evaluate( double x ) const;
-int getNumRoots() const;
-double getSmallRoot() const;
-double getLargeRoot() const;
-*/
+    //If a is non-zero and b2 < 4ac, then there are no real roots.
+    if (this->a !=0 && (this->b<(4 * this->a *this->c))) {
+        roots = 0;
+        return roots;
+    }
+    
+    //If a is non-zero and b2 = 4ac, then there is one real root x = -b/(2a).
+    if (this->a !=0 && (this->b==(4 * this->a *this->c))) {
+        roots = 1;
+        return roots;
+     }
+    
+    //If a is non-zero and b2 > 4ac, then there are two real roots:
+    if (this->a !=0 && (this->b>(4 * this->a *this->c))) {
+        roots = 2;
+    }
+    return roots;
+}
+
+double Quadratic:: evaluate( double x ) const{
+    double result;
+    result = ((this->a* pow(x,2))+(this->b*x)+this->c);
+    return result;
+}
+
+
+double Quadratic:: getSmallRoot() const{
+    double result;
+    //     -b - sqrt( b2 - 4ac )
+    // x = ________________
+    //            2a
+
+    result = ((-1 * this->b) - sqrt(pow((this->b),2)-4 *this->a*this->c))/2*this->a;
+    return result;
+}
+
+double Quadratic:: getLargeRoot() const{
+    double result;
+    //     -b + sqrt( b2 - 4ac )
+    // x = ________________
+    //            2a
+    
+    result = ((-1 * this->b) + sqrt(pow((this->b),2)-4 *this->a*this->c))/2*this->a;
+    
+    return result;
+}
