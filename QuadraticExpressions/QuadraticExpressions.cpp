@@ -116,20 +116,20 @@ int Quadratic::getNumRoots() const{
         return roots;
     }
 
-    //If a is non-zero and b2 < 4ac, then there are no real roots.
-    if (this->a !=0 && (this->b<(4 * this->a *this->c))) {
+    //If a is non-zero and b^2 < 4ac, then there are no real roots.
+    if (this->a !=0 && (pow(this->b,2)<(4 * this->a *this->c))) {
         roots = 0;
         return roots;
     }
     
     //If a is non-zero and b2 = 4ac, then there is one real root x = -b/(2a).
-    if (this->a !=0 && (this->b==(4 * this->a *this->c))) {
+    if (this->a !=0 && (pow(this->b,2)==(4 * this->a *this->c))) {
         roots = 1;
         return roots;
      }
     
     //If a is non-zero and b2 > 4ac, then there are two real roots:
-    if (this->a !=0 && (this->b>(4 * this->a *this->c))) {
+    if (this->a !=0 && (pow(this->b,2)>(4 * this->a *this->c))) {
         roots = 2;
     }
     return roots;
@@ -144,21 +144,31 @@ double Quadratic:: evaluate( double x ) const{
 
 double Quadratic:: getSmallRoot() const{
     double result;
-    //     -b - sqrt( b2 - 4ac )
+    
+    //If a is non-zero and b2 = 4ac, then there is one real root x = -b/(2a).
+    if (this->a ==0){
+        result = -1 * this->b/(2*this->a);
+    }else{
+    //     -b - sqrt( b^2 - 4ac )
     // x = ________________
     //            2a
-
-    result = ((-1 * this->b) - sqrt(pow((this->b),2)-4 *this->a*this->c))/2*this->a;
+        result = ((-1 * this->b) - sqrt(pow((this->b),2)-4 *this->a*this->c))/(2*this->a);
+   
+    }
     return result;
 }
 
 double Quadratic:: getLargeRoot() const{
     double result;
-    //     -b + sqrt( b2 - 4ac )
+    
+    //If a is non-zero and b2 = 4ac, then there is one real root x = -b/(2a).
+    if (this->a ==0){
+        result = -1 * this->b/(2*this->a);
+    }else{
+    //     -b + sqrt( b^2 - 4ac )
     // x = ________________
     //            2a
-    
-    result = ((-1 * this->b) + sqrt(pow((this->b),2)-4 *this->a*this->c))/2*this->a;
-    
+        result = ((-1 * this->b) + sqrt(pow(this->b,2) - (4 * (this->a * this->c))))/(2*this->a);
+    }
     return result;
 }
