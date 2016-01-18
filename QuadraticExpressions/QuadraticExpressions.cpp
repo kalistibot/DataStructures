@@ -168,7 +168,7 @@ double Quadratic:: getLargeRoot() const{
     //     -b + sqrt( b^2 - 4ac )
     // x = ________________
     //            2a
-        result = ((-1 * this->b) + sqrt(pow(this->b,2) - (4 * (this->a * this->c))))/(2*this->a);
+        result = ((-1 * this->b) + sqrt(pow(this->b,2) - 4 * (this->a * this->c)))/(2*this->a);
     }
     return result;
 }
